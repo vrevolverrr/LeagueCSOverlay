@@ -58,6 +58,12 @@ class Overlay:
 
         self.cs_per_minute_text = tk.StringVar()
         self.cs_per_minute_text.set("cs/min: 0.00")
+
+        try:
+            with open("font.cfg", "r") as f:
+                self.font_size = int(f.read())
+        except FileNotFoundError or ValueError:
+            self.font_size = 11
     
     def set_attributes(self):
         """ Set the attributes of the overlay """
@@ -70,7 +76,7 @@ class Overlay:
         """ Add the widgets to the overlay """
         frame = tk.Frame(width=160, height=60, pady=60, padx=10)
         frame.pack(side=tk.TOP, anchor=tk.NE)
-        label = tk.Label(frame, textvariable=self.cs_per_minute_text, fg="white", font=("Terminal", 11))
+        label = tk.Label(frame, textvariable=self.cs_per_minute_text, fg="white", font=("Terminal", self.font_size))
         label.pack()
 
     def update_counter(self):
