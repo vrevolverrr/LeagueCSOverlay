@@ -47,7 +47,7 @@ class SimpleOCR:
         
         # Find the target digit with smallest MSE
         most_similar_digit = str(computed_mse.index(min(computed_mse)))
-
+        
         return most_similar_digit if most_similar_digit != '10' else ''
 
 class Overlay:
